@@ -1,0 +1,29 @@
+{% load static %}
+<div class="nav-container">
+    <img src="{% static "base/img/logo.png" %}" alt="Logo">
+    <div class="title">
+        <h1>Langlaufvereniging</h1>
+
+        <h1>De Lange Lat</h1>
+    </div>
+    {% if user.is_authenticated %}
+        <a href="{% url 'index'%}" class = "nav-item">Home</a>
+        <a href="{% url 'distances'%}" class = "nav-item">Distances</a>
+        <a href="{% url 'index'%}">Home</a>
+        <a href="{% url 'medalwinners'%}">All winners</a>
+        <a href="{% url 'medal' 'Gold'%}">Gold winner</a>
+        <a href="{% url 'distances'%}">All distances</a>
+        <a href="{% url 'times' '15KM'%}">Times 15KM</a>
+        <a href="{% url 'times' '30KM'%}">Times 30KM</a>
+        <a href="{% url 'logout_user'%}"> Logout</a>
+        {% if user.is_staff%}
+           <a href="{% url 'unapproved_times'%}" class = "nav-item">Approve times</a>
+           {% endif%}
+           <a href="{% url 'logout'%}" class = "nav-item">Logout</a>
+
+
+    {% else%}
+        <a href="{% url 'login'%}" class = "nav-item">Login</a>
+        <a href="{% url 'register'%}" class = "nav-item">Sign up</a>
+    {% endif %}
+</div>

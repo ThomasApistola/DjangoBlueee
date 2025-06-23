@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+}
+
+.nav-container {
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-left: 1rem;
+}
+
+img {
+    height: 4rem;
+}
+
+a {
+    color: crimson;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+a:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}
