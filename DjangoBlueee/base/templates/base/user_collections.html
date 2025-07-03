@@ -15,15 +15,15 @@
     {% endfor %}
   </ul>
 
-  <h2>Opgehaald, nog niet goedgekeurd</h2>
+  <h2>Opgehaald</h2>
   <ul>
     {% for c in not_yet_collected %}
       <li>
         <a href="{% url 'medicine_detail' c.medicine.pk %}">{{ c.medicine.name }}</a> op {{ c.date }}
-        (Wacht op goedkeuring)
+
       </li>
     {% empty %}
-      <li>Geen opgehaalde afhaalacties die wachten op goedkeuring.</li>
+      <li>Geen opgehaalde afhaalacties.</li>
     {% endfor %}
   </ul>
 {% endblock content %}

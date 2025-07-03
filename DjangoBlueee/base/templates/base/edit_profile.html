@@ -2,7 +2,7 @@
  
 {% block content %}
   <h2>Profiel bewerken</h2>
-  <form method="POST">
+  <form method="POST"class="myform">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">
