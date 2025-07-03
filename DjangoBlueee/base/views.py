@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import NameForm, ProfileForm, MedicineForm, CollectionForm
-from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Profile, Medicine, Collection
@@ -202,3 +201,25 @@ def medicine_detail(request, pk):
         "total_count": total_count,
     })
 
+@login_required
+def custom_password_change(request):
+    error = ""
+    success = False
+    if request.method == "POST":
+        old_password = request.POST.get("old_password")
+        new_password1 = request.POST.get("new_password1")
+        new_password2 = request.POST.get("new_password2")
+        user = request.user
+
+        if not user.check_password(old_password):
+            error = "Oud wachtwoord is onjuist."
+        elif new_password1 != new_password2:
+            error = "Wachtwoorden komen niet overeen."
+        elif not new_password1:
+            error = "Nieuw wachtwoord mag niet leeg zijn."
+        else:
+            user.set_password(new_password1)
+            user.save()
+            update_session_auth_hash(request, user)
+            success = True
+    return render(request, "registration/password_change.html", {"error": error, "success": success})

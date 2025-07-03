@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("", include("django.contrib.auth.urls")),
+    path('password_change/', views.custom_password_change, name='password_change'),
     path("", include("django.contrib.auth.urls")),
     path("nameform/", views.nameform, name="nameform"),
     path("register/", views.register, name="register"),
