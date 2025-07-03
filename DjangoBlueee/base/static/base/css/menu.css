@@ -1,9 +1,10 @@
 body {
     margin: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 .nav-container {
-    background-color: aqua;
+    background-color: rgba(8, 4, 253, 0.648);
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -15,7 +16,7 @@ img {
 }
 
 a {
-    color: crimson;
+    color: rgb(32, 9, 238);
     font-style: italic;
     text-decoration: none;
     font-size: 2rem;
