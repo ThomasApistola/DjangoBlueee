@@ -13,9 +13,7 @@
 
         {% if user.is_staff %}
             <a href="{% url 'admin_collection_list' %}" class="nav-item">Alle afhaalacties</a>
-            <a href="{% url 'create_collection' %}" class="nav-item">Nieuwe afhaalactie</a>
             <a href="{% url 'medicine_list' %}" class="nav-item">Alle medicijnen</a>
-            <a href="{% url 'create_medicine' %}" class="nav-item">Nieuw medicijn</a>
         {% endif %}
         
         <a href="{% url 'logout_user' %}"> Logout {{ user.username }}</a>

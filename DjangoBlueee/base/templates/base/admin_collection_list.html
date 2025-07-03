@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
+  <a href="{% url 'create_collection' %}" class = "medicinepickup">Nieuwe afhaalactie aanmaken</a>
   <h2>Alle afhaalacties</h2>
   <table>
     <tr>
@@ -13,12 +14,12 @@
     {% for c in collections %}
     <tr>
       <td>
-        <a href="{% url 'medicine_detail' c.medicine.pk %}">
+        <a href="{% url 'medicine_detail' c.medicine.pk %}" class = "medicinepickup">
             {{ c.medicine.name }}
         </a>
       </td>
       <td>
-        <a href="{% url 'user_profile_admin' c.user.id %}">
+        <a href="{% url 'user_profile_admin' c.user.id %}" class = "medicinepickup">
             {{ c.user.username }}
         </a>
       </td>
@@ -27,12 +28,12 @@
       <td>{{ c.collected_approved|yesno:"Ja,Nee" }}</td>
       <td>
         {% if c.collected and not c.collected_approved %}
-          <a href="{% url 'approve_collection' c.pk %}">Goedkeuren</a>
+          <a href="{% url 'approve_collection' c.pk %}" class = "medicinepickup">Goedkeuren</a>
         {% endif %}
-        <a href="{% url 'delete_collection' c.pk %}">Verwijderen</a>
+        <a href="{% url 'delete_collection' c.pk %}" class = "medicinepickup">Verwijderen</a>
       </td>
     </tr>
     {% endfor %}
   </table>
-  <a href="{% url 'create_collection' %}">Nieuwe afhaalactie aanmaken</a>
+  
 {% endblock content %}

@@ -3,9 +3,9 @@ body {
 }
 
 .edit_profile,
-.password_change {
+.password_change{
     background: #0c6204;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px 15px;           
     font-size: 1.5rem;          
     border-radius: 4px;
@@ -19,3 +19,4 @@ body {
 .password_change:hover {
     background-color: #2f804b; 
 }
+

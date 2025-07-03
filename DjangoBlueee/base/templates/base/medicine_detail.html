@@ -15,12 +15,12 @@
     <ul>
       <li>In totaal is dit medicijn {{ total_count }} keer opgehaald.</li>
     </ul>
-    <a href="{% url 'medicine_list' %}">Terug naar alle medicijnen</a>
+    <a href="{% url 'medicine_list' %}" class = "medicinepickup">Terug naar alle medicijnen</a>
   {% endif %}
   <br>
-  <a href="{% url 'user_collections' %}">Terug naar mijn afhaalacties</a>
+  <a href="{% url 'user_collections' %}" class = "medicinepickup">Terug naar mijn afhaalacties</a>
   <br>
   {% if user.is_staff %}
-    <a href="{% url 'create_collection' %}?medicine={{ medicine.pk }}">Nieuwe afhaalactie voor dit medicijn</a>
+    <a href="{% url 'create_collection' %}?medicine={{ medicine.pk }}" class = "medicinepickup">Nieuwe afhaalactie voor dit medicijn</a>
   {% endif %}
 {% endblock content %}

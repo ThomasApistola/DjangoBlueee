@@ -4,7 +4,7 @@
   <ul>
     {% for c in openstaande %}
       <li>
-        <a href="{% url 'medicine_detail' c.medicine.pk %}">{{ c.medicine.name }}</a> op {{ c.date }}
+        <a href="{% url 'medicine_detail' c.medicine.pk %}" class = "medicinepickup">{{ c.medicine.name }}</a> op {{ c.date }}
         <form method="POST" action="{% url 'mark_collected' c.pk %}" style="display:inline;">
           {% csrf_token %}
           <input type="submit" value="Markeer als opgehaald">
@@ -19,7 +19,7 @@
   <ul>
     {% for c in not_yet_collected %}
       <li>
-        <a href="{% url 'medicine_detail' c.medicine.pk %}">{{ c.medicine.name }}</a> op {{ c.date }}
+        <a href="{% url 'medicine_detail' c.medicine.pk %}" class = "medicinepickup">{{ c.medicine.name }}</a> op {{ c.date }}
 
       </li>
     {% empty %}

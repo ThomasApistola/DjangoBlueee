@@ -10,6 +10,6 @@
   <form method="POST">
     {% csrf_token %}
     <input type="submit" value="Submit">
-    <a href="{% url 'admin_collection_list' %}">Annuleren</a>
+    <a href="{% url 'admin_collection_list' %}" class = "medicinepickup">Annuleren</a>
   </form>
 {% endblock content %}
