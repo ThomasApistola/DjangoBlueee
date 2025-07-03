@@ -2,12 +2,12 @@
 {% block content %}
   <h2>Mijn openstaande afhaalacties</h2>
   <ul>
-    {% for c in collections %}
+    {% for c in collection %}
       <li>
         {{ c.medicine.name }} op {{ c.date }}
         <form method="POST" action="{% url 'mark_collected' c.pk %}" style="display:inline;">
           {% csrf_token %}
-          <input type="submit" value="Markeer als opgehaald">
+          <input type="submit" value="Submit">
         </form>
       </li>
     {% empty %}

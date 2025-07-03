@@ -10,7 +10,7 @@
   </ul>
   <form method="POST">
     {% csrf_token %}
-    <input type="submit" value="Ja, verwijderen">
+    <input type="submit" value="Submit">
     <a href="{% url 'medicine_list' %}">Annuleren</a>
   </form>
 {% endblock content %}

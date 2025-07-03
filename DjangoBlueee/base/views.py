@@ -46,6 +46,14 @@ def logout_user(request):
     logout(request)
     return redirect("login")
 
+
+@login_required
+def profile_view(request):
+    profile = Profile.objects.get(user=request.user)
+    context = {"user": request.user, "profile": profile}
+    return render(request, "base/profile.html", context)
+
+
 @login_required
 def edit_profile(request):
     profile = Profile.objects.get(user=request.user)
@@ -70,7 +78,7 @@ def create_collection(request):
             user = request.POST.get('user')
             medicine = request.POST.get('medicine')
             date = request.POST.get('date')
-            # Controle: bestaat er al zo'n afhaalactie?
+          
             bestaat = Collection.objects.filter(user=user, medicine=medicine, date=date).exists()
             if bestaat:
                 form.add_error(None, "Deze gebruiker heeft op deze dag al een afhaalactie voor dit medicijn.")

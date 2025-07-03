@@ -4,7 +4,7 @@
   <p>Weet je zeker dat je deze afhaalactie wilt markeren als opgehaald?</p>
   <form method="POST">
     {% csrf_token %}
-    <input type="submit" value="Ja, markeer als opgehaald">
+    <input type="submit" value="Submit">
     <a href="{% url 'user_collections' %}">Annuleren</a>
   </form>
 {% endblock content %}

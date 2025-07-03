@@ -5,17 +5,15 @@
   <p><strong>Geneest:</strong> {{ medicine.cures }}</p>
   <p><strong>Bijwerkingen:</strong> {{ medicine.sideEffects }}</p>
 
-  <hr>
-
-  <!-- Gebruikersgedeelte -->
+  
+  
   <h3>Jouw afhaalstatistiek</h3>
   <ul>
     <li>Jij hebt dit medicijn {{ user_count }} keer opgehaald.</li>
   </ul>
 
   {% if user.is_staff %}
-    <hr>
-    <!-- Admin-gedeelte -->
+
     <h3>Admin: Overzicht afhaalstatistiek</h3>
     <ul>
       <li>In totaal is dit medicijn {{ total_count }} keer opgehaald.</li>
