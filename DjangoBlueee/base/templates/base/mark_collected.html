@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Afhaalactie markeren als opgehaald</h2>
+  <p>Weet je zeker dat je deze afhaalactie wilt markeren als opgehaald?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Submit">
+    <a href="{% url 'user_collections' %}">Annuleren</a>
+  </form>
+{% endblock content %}

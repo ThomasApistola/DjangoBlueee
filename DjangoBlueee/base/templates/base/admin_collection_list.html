@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Alle afhaalacties</h2>
+  <table>
+    <tr>
+      <th>Medicijn</th>
+      <th>Gebruiker</th>
+      <th>Datum</th>
+      <th>Opgehaald</th>
+      <th>Goedgekeurd</th>
+      <th>Acties</th>
+    </tr>
+    {% for c in collection %}
+    <tr>
+      <td>
+        <a href="{% url 'medicine_detail' c.medicine.pk %}">
+            {{ c.medicine.name }}
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'user_profile_admin' c.user.id %}">
+            {{ c.user.username }}
+        </a>
+      </td>
+      <td>{{ c.date }}</td>
+      <td>{{ c.collected|yesno:"Ja,Nee" }}</td>
+      <td>{{ c.collected_approved|yesno:"Ja,Nee" }}</td>
+      <td>
+        {% if c.collected and not c.collected_approved %}
+          <a href="{% url 'approve_collection' c.pk %}">Goedkeuren</a>
+        {% endif %}
+        <a href="{% url 'delete_collection' c.pk %}">Verwijderen</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="{% url 'create_collection' %}">Nieuwe afhaalactie aanmaken</a>
+{% endblock content %}

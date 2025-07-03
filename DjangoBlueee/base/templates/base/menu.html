@@ -3,23 +3,25 @@
     <img src="{% static "base/img/logo.png" %}" alt="Logo">
     <div class="title">
         <h1>Langlaufvereniging</h1>
-
+ 
         <h1>De Lange Lat</h1>
     </div>
     {% if user.is_authenticated %}
         <a href="{% url 'index'%}" class = "nav-item">Home</a>
-        <a href="{% url 'hello'%}" class = "nav-item">Hello!</a>
-        <a href="{% url 'logout_user'%}"> Logout</a>
+        <a href="{% url 'hello' %}" class="nav-item">Hello!</a>
         <a href="{% url 'profile' %}" class="nav-item">Profile</a>
-
-        {% comment %} {% if user.is_staff%}
-           <a href="{% url 'unapproved_times'%}" class = "nav-item">Approve times</a>
-           {% endif%}
-           <a href="{% url 'logout'%}" class = "nav-item">Logout</a> {% endcomment %}
-
-
-    {% else%}
-        <a href="{% url 'login'%}" class = "nav-item">Login</a>
-        <a href="{% url 'register'%}" class = "nav-item">Sign up</a>
+        <a href="{% url 'user_collections' %}" class="nav-item">Mijn afhaalacties</a>
+        <a href="{% url 'logout_user' %}"> Logout {{ user.username }}</a>
+        <a href="{% url 'password_change' %}" class="nav-item">Wachtwoord wijzigen</a>
+        {% if user.is_staff %}
+            <a href="{% url 'admin_collection_list' %}" class="nav-item">Alle afhaalacties</a>
+            <a href="{% url 'create_collection' %}" class="nav-item">Nieuwe afhaalactie</a>
+            <a href="{% url 'medicine_list' %}" class="nav-item">Alle medicijnen</a>
+            <a href="{% url 'create_medicine' %}" class="nav-item">Nieuw medicijn</a>
+        {% endif %}
+ 
+    {% else %}
+        <a href="{% url 'login' %}" class="nav-item">Login</a>
+        <a href="{% url 'register' %}" class="nav-item">Sign up</a>
     {% endif %}
 </div>

@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Medicijn verwijderen</h2>
+  <p>Weet je zeker dat je dit medicijn wilt verwijderen?</p>
+  <ul>
+    <li>Naam: {{ medicine.name }}</li>
+    <li>Fabrikant: {{ medicine.manufacturer }}</li>
+    <li>Geneest: {{ medicine.cures }}</li>
+    <li>Bijwerkingen: {{ medicine.sideEffects }}</li>
+  </ul>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Submit">
+    <a href="{% url 'medicine_list' %}">Annuleren</a>
+  </form>
+{% endblock content %}
