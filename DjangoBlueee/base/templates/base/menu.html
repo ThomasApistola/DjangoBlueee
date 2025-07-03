@@ -10,14 +10,15 @@
         <a href="{% url 'index'%}" class = "nav-item">Home</a>
         <a href="{% url 'profile' %}" class="nav-item">Profile</a>
         <a href="{% url 'user_collections' %}" class="nav-item">Mijn afhaalacties</a>
-        <a href="{% url 'logout_user' %}"> Logout {{ user.username }}</a>
-        <a href="{% url 'password_change' %}" class="nav-item">Wachtwoord wijzigen</a>
+
         {% if user.is_staff %}
             <a href="{% url 'admin_collection_list' %}" class="nav-item">Alle afhaalacties</a>
             <a href="{% url 'create_collection' %}" class="nav-item">Nieuwe afhaalactie</a>
             <a href="{% url 'medicine_list' %}" class="nav-item">Alle medicijnen</a>
             <a href="{% url 'create_medicine' %}" class="nav-item">Nieuw medicijn</a>
         {% endif %}
+        
+        <a href="{% url 'logout_user' %}"> Logout {{ user.username }}</a>
  
     {% else %}
         <a href="{% url 'login' %}" class="nav-item">Login</a>

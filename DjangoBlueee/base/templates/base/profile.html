@@ -7,4 +7,6 @@
   <p>Date of Birth: {{ profile.date_of_birth }}</p>
   <p>Bio: {{ profile.bio }}</p>
   <a href="{% url 'edit_profile' %}" class="edit_profile">Edit Profile</a>
+  <br>
+  <a href="{% url 'password_change' %}" class="password_change">Wachtwoord wijzigen</a>
 {% endblock content %}
