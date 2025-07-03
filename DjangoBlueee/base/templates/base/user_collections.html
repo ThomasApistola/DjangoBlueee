@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Mijn openstaande afhaalacties</h2>
+  <ul>
+    {% for c in collections %}
+      <li>
+        {{ c.medicine.name }} op {{ c.date }}
+        <form method="POST" action="{% url 'mark_collected' c.pk %}" style="display:inline;">
+          {% csrf_token %}
+          <input type="submit" value="Markeer als opgehaald">
+        </form>
+      </li>
+    {% empty %}
+      <li>Geen openstaande afhaalacties.</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

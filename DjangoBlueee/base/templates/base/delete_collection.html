@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Afhaalactie verwijderen</h2>
+  <p>Weet je zeker dat je deze afhaalactie wilt verwijderen?</p>
+  <ul>
+    <li>Medicijn: {{ collection.medicine.name }}</li>
+    <li>Gebruiker: {{ collection.user.username }}</li>
+    <li>Datum: {{ collection.date }}</li>
+  </ul>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Ja, verwijderen">
+    <a href="{% url 'admin_collection_list' %}">Annuleren</a>
+  </form>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>Profiel van {{ profile_user.username }}</h2>
+  {% if profile_user.profile %}
+    <p>Woonplaats: {{ profile_user.profile.location }}</p>
+    <p>Geboortedatum: {{ profile_user.profile.date_of_birth }}</p>
+    <p>Bio: {{ profile_user.profile.bio }}</p>
+  {% endif %}
+
+  <h3>Alle afhaalacties</h3>
+  <table>
+    <tr>
+      <th>Medicijn</th>
+      <th>Datum</th>
+      <th>Opgehaald</th>
+      <th>Goedgekeurd</th>
+    </tr>
+    {% for c in collections %}
+    <tr>
+      <td>{{ c.medicine.name }}</td>
+      <td>{{ c.date }}</td>
+      <td>{{ c.collected|yesno:"Ja,Nee" }}</td>
+      <td>{{ c.collected_approved|yesno:"Ja,Nee" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">Geen afhaalacties gevonden.</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock content %}
