@@ -11,10 +11,6 @@ from .models import Profile, Medicine, Collection
 from django.contrib.auth.models import User
 # Create your views here.
 
-
-def say_hello(request):
-    return render(request, "base/hello.html")
-
 def index (request):
         return render(request, "base/index.html")
 
@@ -72,13 +68,20 @@ def edit_profile(request):
 
 @staff_member_required
 def create_collection(request):
+    initial = {}
+    medicine_id = request.GET.get('medicine')
+    if medicine_id:
+        try:
+            initial['medicine'] = Medicine.objects.get(pk=medicine_id)
+        except Medicine.DoesNotExist:
+            pass
     if request.method == "POST":
         form = CollectionForm(request.POST)
         if form.is_valid():
             user = request.POST.get('user')
             medicine = request.POST.get('medicine')
             date = request.POST.get('date')
-          
+            # Check of er al een afhaalactie bestaat voor deze gebruiker, medicijn en datum
             bestaat = Collection.objects.filter(user=user, medicine=medicine, date=date).exists()
             if bestaat:
                 form.add_error(None, "Deze gebruiker heeft op deze dag al een afhaalactie voor dit medicijn.")
@@ -87,7 +90,7 @@ def create_collection(request):
                 messages.success(request, "Afhaalactie aangemaakt.")
                 return redirect('admin_collection_list')
     else:
-        form = CollectionForm()
+        form = CollectionForm(initial=initial)
     return render(request, "base/create_collection.html", {"form": form})
 
 @staff_member_required
@@ -156,8 +159,12 @@ def delete_medicine(request, pk):
 
 @login_required
 def user_collections(request):
-    collections = Collection.objects.filter(user=request.user, collected=False)
-    return render(request, "base/user_collections.html", {"collections": collections})
+    openstaande = Collection.objects.filter(user=request.user, collected=False)
+    not_yet_collected = Collection.objects.filter(user=request.user, collected=True, collected_approved=False)
+    return render(request, "base/user_collections.html", {
+        "openstaande": openstaande,
+        "not_yet_collected": not_yet_collected,
+    })
 
 @login_required
 def mark_collected(request, pk):
