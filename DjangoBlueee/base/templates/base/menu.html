@@ -10,6 +10,7 @@
         <a href="{% url 'index'%}" class = "nav-item">Home</a>
         <a href="{% url 'hello'%}" class = "nav-item">Hello!</a>
         <a href="{% url 'logout_user'%}"> Logout</a>
+        <a href="{% url 'profile' %}" class="nav-item">Profile</a>
 
         {% comment %} {% if user.is_staff%}
            <a href="{% url 'unapproved_times'%}" class = "nav-item">Approve times</a>
